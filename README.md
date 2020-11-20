@@ -3,7 +3,7 @@
 Situation:
   Phished an end user. Once landing on the end user system, started looking for evidence of Outlook being installed and checked if Outlook had been setup on the system. A trove of information can be gathered from the Offline Address Book files (OAB). 
   
-  Location of OAB files: C:\Users\<username>\AppData\Local\Microsoft\Outlook\Offline Address Books\identifier\, I'm looking for the udetails.oab file.
+  Location of OAB files: `C:\Users\<username>\AppData\Local\Microsoft\Outlook\Offline Address Books\identifier\`, I'm looking for the udetails.oab file.
 
 Grabbed a copy of the file and started digging in.
 
@@ -17,4 +17,4 @@ Caveats:
   Email Address, there are a number of smtp, sip and such entries that could match the email address regex. I only wanted those that matched first.last@domain.com for my output.
   Phone, some folks have business phones in Outlook, some don't.
 
-To generate a udetails.txt file, I first opened the udetails.oab file with VIM. Replacing all the control characters and such using this: /[^[:alnum:][:punct:][:space:]]/, then saving the file as udetails.txt, preserving the original oab file.
+To generate a udetails.txt file, I first opened the udetails.oab file with VIM. Replacing all the control characters and such using this: `/[^[:alnum:][:punct:][:space:]]/`, then saving the file as udetails.txt, preserving the original oab file.
