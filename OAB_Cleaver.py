@@ -24,7 +24,7 @@ def main(argv):
         userSplit = myStr.split('/o=<REDACTED>/cn=Recipients/cn=')
         # The length of userSplit gives you an indication of how many entries there are within the OAB file.
         print('Number of user strings found:',len(userSplit))
-        # Probably a horrible job of trying to get a CSV file, YMMV.
+        # Probably a horrible job of trying to get a CSV file, YMMV. Mainly using it to split the email entries to iterate through each one to get what I want.
         for user in userSplit:
                 if 'SMTP:' in user:
                         user = user.replace('SMTP:', ';SMTP:')
