@@ -3,7 +3,7 @@
 Situation:
   Phished an end user. Once landing on the end user system, started looking for evidence of Outlook being installed and checked if Outlook had been setup on the system. A trove of information can be gathered from the Offline Address Book files (OAB). 
   
-  Location of OAB files: C:\Users\<username>\AppData\Local\Microsoft\Outlook\Offline Address Books\\<identifier>\, I'm looking for the udetails.oab file.
+  Location of OAB files: C:\Users\<username>\AppData\Local\Microsoft\Outlook\Offline Address Books\identifier\, I'm looking for the udetails.oab file.
 
 Grabbed a copy of the file and started digging in.
 
