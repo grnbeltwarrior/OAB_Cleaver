@@ -9,9 +9,23 @@ import fnmatch
 import string
 from progressbar import ProgressBar
 
+# get the domain to search on
+domain = '@domain.com'
+
+# dictionary of things to search and replace on - makes for easier adding and removing these down the line
+replaceMe = {
+'SMTP:': ';SMTP:',
+'smtp:': ';smtp:',
+'SIP:': ';SIP:',
+'sip:': ';sip:',
+'X500:': ';X500:',
+domain:'@domain;',
+';;;': ';',
+';;': ';',
+'  ': ' '
+}
 def main(argv):
         # Progress bars because if you run into 100k entries like I did, you start to wonder what the frick actual is happening.
-        domain = '@domain.com'
         pbar = ProgressBar()
         progress = ProgressBar()
         inputfile = './udetails.txt' 
@@ -26,26 +40,10 @@ def main(argv):
         print('Number of user strings found:',len(userSplit))
         # Probably a horrible job of trying to get a CSV file, YMMV. Mainly using it to split the email entries to iterate through each one to get what I want.
         for user in userSplit:
-                if 'SMTP:' in user:
-                        user = user.replace('SMTP:', ';SMTP:')
-                if 'smtp:' in user:
-                        user = user.replace('smtp:', ';smtp:')
-                if 'SIP:' in user:
-                        user = user.replace('SIP:', ';SIP:')
-                if 'sip:' in user:
-                        user = user.replace('sip:', ';sip:')
-                if 'X500:' in user:
-                        user = user.replace('X500:', ';X500:')
-                if 'x500:' in user:
-                        user = user.replace('x500:', ';x500:')
-                if domain in user:
-                        user = user.replace(domain, '@domain;')
-                if ';;;' in user:
-                        user = user.replace(';;;', ';')
-                if ';;' in user:
-                        user = user.replace(';;', ';')
-                if '  ' in user:
-                        user = user.replace('  ', ' ')
+                # Run through the dictionary and make the changes needed
+                for k, v in replaceMe.items():
+                        if k in user:
+                        user = user.replace(k,v)
         myList = myStr.split(';')
         print('Count of split items to inventory:',len(myList))
         smtpList = []
